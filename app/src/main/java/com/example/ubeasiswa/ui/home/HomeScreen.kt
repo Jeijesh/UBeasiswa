@@ -21,12 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.ubeasiswa.ui.theme.Blue
 import com.example.ubeasiswa.ui.theme.Orange
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     var selectedIndex by remember { mutableStateOf(0) }
 
     val items = listOf("Home", "Saved", "Applications", "Profile")
@@ -135,13 +136,20 @@ fun HomeScreen() {
             }
         }
     ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding)) {
+        Box(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .background(Color(0xFFF9FAFB)) // warna #F9FAFB
+        ) {
             when (selectedIndex) {
                 0 -> HomeFragment(modifier = Modifier.fillMaxSize())
                 1 -> SavedFragment(modifier = Modifier.fillMaxSize())
                 2 -> ApplicationsFragment(modifier = Modifier.fillMaxSize())
-                3 -> ProfileFragment(modifier = Modifier.fillMaxSize())
-            }
+                3 -> ProfileFragment(
+                    navController = navController,  // <== penting
+                    modifier = Modifier.fillMaxSize()
+                )            }
         }
     }
 }

@@ -17,7 +17,7 @@ fun UbeasiswaApp() {
         composable("welcome") { WelcomeActivityScreen(navController) }
         composable("login") { LoginActivityScreen(navController) }
         composable("register") { RegisterActivityScreen(navController) }
-        composable("home") { HomeScreen() }
+        composable("home") { HomeScreen(navController)}
     }
 
 }
